@@ -11,30 +11,42 @@ const tabs = [{
     title: 'Public repositories',
     icon: require('./assets/img/circle.png')
 }];
+let islogged = false;
+// AuthService.getAuthInfo().then((authInfo) => {
+if (islogged) {
+    // this will start our app
+    Navigation.startTabBasedApp({
+        tabs,
+        tabsStyle: {
+            tabBarBackgroundColor: '#003a66',
+            navBarButtonColor: '#ffffff',
+            tabBarButtonColor: '#ffffff',
+            navBarTextColor: '#ffffff',
+            tabBarSelectedButtonColor: '#ff505c',
+            navigationBarColor: '#003a66',
+            navBarBackgroundColor: '#003a66',
+            statusBarColor: '#002b4c',
+            tabFontFamily: 'BioRhyme-Bold',
+        },
+        appStyle: {
+            tabBarBackgroundColor: '#003a66',
+            navBarButtonColor: '#ffffff',
+            tabBarButtonColor: '#ffffff',
+            navBarTextColor: '#ffffff',
+            tabBarSelectedButtonColor: '#ff505c',
+            navigationBarColor: '#003a66',
+            navBarBackgroundColor: '#003a66',
+            statusBarColor: '#002b4c',
+            tabFontFamily: 'BioRhyme-Bold',
+        }
+    });
+} else {
+    Navigation.startSingleScreenApp({
+        screen: {
+            screen: 'githubXAP.Login',
+            title: 'Login',
+        }
+    });
+}
+// });
 
-// this will start our app
-Navigation.startTabBasedApp({
-    tabs,
-    tabsStyle: {
-        tabBarBackgroundColor: '#003a66',
-        navBarButtonColor: '#ffffff',
-        tabBarButtonColor: '#ffffff',
-        navBarTextColor: '#ffffff',
-        tabBarSelectedButtonColor: '#ff505c',
-        navigationBarColor: '#003a66',
-        navBarBackgroundColor: '#003a66',
-        statusBarColor: '#002b4c',
-        tabFontFamily: 'BioRhyme-Bold',
-    },
-    appStyle: {
-        tabBarBackgroundColor: '#003a66',
-        navBarButtonColor: '#ffffff',
-        tabBarButtonColor: '#ffffff',
-        navBarTextColor: '#ffffff',
-        tabBarSelectedButtonColor: '#ff505c',
-        navigationBarColor: '#003a66',
-        navBarBackgroundColor: '#003a66',
-        statusBarColor: '#002b4c',
-        tabFontFamily: 'BioRhyme-Bold',
-    }
-});
