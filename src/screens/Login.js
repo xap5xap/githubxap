@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, Text, ScrollView, TouchableHighlight, Image, TextInput, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Image, ActivityIndicator } from 'react-native';
+import { TouchableHighlight, TextInput, TextTouchableHighlight } from '../components/Styles';
 
 class Login extends React.Component {
 
@@ -28,12 +29,12 @@ class Login extends React.Component {
             <ScrollView style={styles.container}>
                 <Image style={styles.logo} source={require('../assets/img/circle.png')}></Image>
                 <Text style={styles.heading}>Github Browser</Text>
-                <TextInput style={styles.input} placeholder="Github username" onChangeText={(text) => this.setState({ username: text })} />
-                <TextInput style={styles.input} placeholder="Github password" secureTextEntry={true} onChangeText={(text) => this.setState({ password: text })} />
-                <TouchableHighlight style={styles.button} onPress={this.onLoginPressed}>
-                    <Text style={styles.buttonText}>
+                <TextInput maxLength={20} placeholder="Github username" onChangeText={(text) => this.setState({ username: text })} />
+                <TextInput placeholder="Github password" secureTextEntry={true} onChangeText={(text) => this.setState({ password: text })} />
+                <TouchableHighlight onPress={this.onLoginPressed}>
+                    <TextTouchableHighlight >
                         Log in
-                </Text>
+                </TextTouchableHighlight>
                 </TouchableHighlight>
                 {errorCtrl}
                 <ActivityIndicator
@@ -47,46 +48,27 @@ class Login extends React.Component {
     }
 
     onLoginPressed() {
-      
+
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#F5FCFF',
         flex: 1,
         paddingTop: 40,
         padding: 10
-
     },
     loader: {
         marginTop: 20
     },
     logo: {
-        width: 66,
-        height: 55
+        width: 75,
+        height: 70,
+        alignSelf: 'center'
     },
     heading: {
         fontSize: 30,
-        marginTop: 10
-    },
-    input: {
-        height: 50,
         marginTop: 10,
-        padding: 4,
-        fontSize: 18,
-        width: '100%'
-    },
-    button: {
-        height: 50,
-        backgroundColor: '#48BBEC',
-        alignSelf: 'stretch',
-        marginTop: 10,
-        justifyContent: 'center'
-    },
-    buttonText: {
-        fontSize: 22,
-        color: '#FFF',
         alignSelf: 'center'
     },
     error: {
