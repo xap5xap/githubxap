@@ -29,8 +29,8 @@ class Login extends React.Component {
             <ScrollView style={styles.container}>
                 <Image style={styles.logo} source={require('../assets/img/circle.png')}></Image>
                 <Text style={styles.heading}>Github Browser</Text>
-                <TextInput maxLength={20} placeholder="Github username" onChangeText={(text) => this.setState({ username: text })} />
-                <TextInput placeholder="Github password" secureTextEntry={true} onChangeText={(text) => this.setState({ password: text })} />
+                <TextInput style={styles.input} maxLength={20} placeholder="Github username" onChangeText={(text) => this.setState({ username: text })} />
+                <TextInput style={styles.input} placeholder="Github password" secureTextEntry={true} onChangeText={(text) => this.setState({ password: text })} />
                 <TouchableHighlight onPress={this.onLoginPressed}>
                     <TextTouchableHighlight >
                         Log in
@@ -74,7 +74,11 @@ const styles = StyleSheet.create({
     error: {
         color: 'red',
         padding: 10
-    }
+    },
+    input: {
+        height: 50,     
+        fontSize: 18,
+    },
 });
 
 export default Login;

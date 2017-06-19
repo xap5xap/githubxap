@@ -11,13 +11,31 @@ export const TouchableHighlight = styled.TouchableHighlight`
   background-color: #9c27b0;
 `;
 
+export const Button = styled.Button`
+  background-color: #9c27b0;
+`;
+
 export const TextTouchableHighlight = styled.Text`
  font-size: 22;
         color: #FFF;
         align-self: center;
 `;
 
+export const ActivityIndicator = styled.ActivityIndicator`
+ marginTop: 20
+ `;
+
 export const TextInput = styled.TextInput.attrs({
     underlineColorAndroid: "#9c27b0"
-}) `
+})`
+margin-top: 10px;
+padding: 4px;
+width: 100%;
+`;
+
+export const ErrorText = styled.Text`
+color: red;
+        padding: 10px;
+        align-self:center;
+
 `;
