@@ -9,6 +9,7 @@ export const TouchableHighlight = styled.TouchableHighlight`
   border-width: 1px;
   border-radius: 4px;
   background-color: #9c27b0;
+  opacity:${props => props.disabled ? 0.5 : 1};
 `;
 
 export const Button = styled.Button`
@@ -18,7 +19,7 @@ export const Button = styled.Button`
 export const TextTouchableHighlight = styled.Text`
  font-size: 22;
         color: #FFF;
-        align-self: center;
+        align-self: center;        
 `;
 
 export const ActivityIndicator = styled.ActivityIndicator`
@@ -26,8 +27,8 @@ export const ActivityIndicator = styled.ActivityIndicator`
  `;
 
 export const TextInput = styled.TextInput.attrs({
-    underlineColorAndroid: "#9c27b0"
-})`
+  underlineColorAndroid: "#9c27b0"
+}) `
 margin-top: 10px;
 padding: 4px;
 width: 100%;

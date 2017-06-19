@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, ScrollView, Image, ActivityIndicator } from 'react-native';
 import { TouchableHighlight, TextInput, TextTouchableHighlight } from '../components/Styles';
 import { Navigation } from 'react-native-navigation';
+import AuthService from '../services/AuthService';
 
 const tabs = [{
     label: 'Repositories',
@@ -19,7 +20,8 @@ class Login extends React.Component {
         this.state = {
             username: '',
             password: '',
-            showProgess: false
+            showProgess: false,
+            loginButtonDisabled: false
         }
     }
 
@@ -39,7 +41,7 @@ class Login extends React.Component {
                 <Text style={styles.heading}>Github Browser</Text>
                 <TextInput style={styles.input} maxLength={20} placeholder="Github username" onChangeText={(text) => this.setState({ username: text })} />
                 <TextInput style={styles.input} placeholder="Github password" secureTextEntry={true} onChangeText={(text) => this.setState({ password: text })} />
-                <TouchableHighlight onPress={this.onLoginPressed}>
+                <TouchableHighlight onPress={this.onLoginPressed} disabled={this.state.loginButtonDisabled}>
                     <TextTouchableHighlight >
                         Log in
                 </TextTouchableHighlight>
@@ -56,33 +58,46 @@ class Login extends React.Component {
     }
 
     onLoginPressed() {
-        this.setState({ showProgess: true });
+        this.setState({ showProgess: true, loginButtonDisabled: true });
 
-        Navigation.startTabBasedApp({
-            tabs,
-            tabsStyle: {
-                tabBarBackgroundColor: '#003a66',
-                navBarButtonColor: '#ffffff',
-                tabBarButtonColor: '#ffffff',
-                navBarTextColor: '#ffffff',
-                tabBarSelectedButtonColor: '#ff505c',
-                navigationBarColor: '#003a66',
-                navBarBackgroundColor: '#003a66',
-                statusBarColor: '#002b4c',
-                tabFontFamily: 'BioRhyme-Bold',
-            },
-            appStyle: {
-                tabBarBackgroundColor: '#003a66',
-                navBarButtonColor: '#ffffff',
-                tabBarButtonColor: '#ffffff',
-                navBarTextColor: '#ffffff',
-                tabBarSelectedButtonColor: '#ff505c',
-                navigationBarColor: '#003a66',
-                navBarBackgroundColor: '#003a66',
-                statusBarColor: '#002b4c',
-                tabFontFamily: 'BioRhyme-Bold',
-            }
-        });
+        AuthService.login({ username: this.state.username, password: this.state.password })
+            .then((results) => {
+                Navigation.startTabBasedApp({
+                    tabs,
+                    tabsStyle: {
+                        tabBarBackgroundColor: '#003a66',
+                        navBarButtonColor: '#ffffff',
+                        tabBarButtonColor: '#ffffff',
+                        navBarTextColor: '#ffffff',
+                        tabBarSelectedButtonColor: '#ff505c',
+                        navigationBarColor: '#003a66',
+                        navBarBackgroundColor: '#003a66',
+                        statusBarColor: '#002b4c',
+                        tabFontFamily: 'BioRhyme-Bold',
+                    },
+                    appStyle: {
+                        tabBarBackgroundColor: '#003a66',
+                        navBarButtonColor: '#ffffff',
+                        tabBarButtonColor: '#ffffff',
+                        navBarTextColor: '#ffffff',
+                        tabBarSelectedButtonColor: '#ff505c',
+                        navigationBarColor: '#003a66',
+                        navBarBackgroundColor: '#003a66',
+                        statusBarColor: '#002b4c',
+                        tabFontFamily: 'BioRhyme-Bold',
+                    }
+                });
+            })
+            .catch(error => {
+                this.setState(Object.assign({ showProgess: false }, error));
+                console.log('error', this.state);
+            })
+            .finally(() => {
+                this.setState({ showProgess: false, loginButtonDisabled: false });
+            });
+
+
+
     }
 }
 
