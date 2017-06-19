@@ -7,6 +7,12 @@ import registerScreens from './screens';
 
 
 registerScreens();
+const tabs = [{
+    label: 'Repositories',
+    screen: 'githubXAP.Repositories',
+    title: 'Public repositories',
+    icon: require('./assets/img/circle.png')
+}];
 
 const navigatorStyle = {
     navBarTranslucent: true,

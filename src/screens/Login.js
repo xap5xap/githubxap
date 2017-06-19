@@ -1,6 +1,14 @@
 import React from 'react';
 import { StyleSheet, View, Text, ScrollView, Image, ActivityIndicator } from 'react-native';
 import { TouchableHighlight, TextInput, TextTouchableHighlight } from '../components/Styles';
+import { Navigation } from 'react-native-navigation';
+
+const tabs = [{
+    label: 'Repositories',
+    screen: 'githubXAP.Repositories',
+    title: 'Public repositories',
+    icon: require('../assets/img/circle.png')
+}]
 
 class Login extends React.Component {
 
@@ -48,7 +56,33 @@ class Login extends React.Component {
     }
 
     onLoginPressed() {
+        this.setState({ showProgess: true });
 
+        Navigation.startTabBasedApp({
+            tabs,
+            tabsStyle: {
+                tabBarBackgroundColor: '#003a66',
+                navBarButtonColor: '#ffffff',
+                tabBarButtonColor: '#ffffff',
+                navBarTextColor: '#ffffff',
+                tabBarSelectedButtonColor: '#ff505c',
+                navigationBarColor: '#003a66',
+                navBarBackgroundColor: '#003a66',
+                statusBarColor: '#002b4c',
+                tabFontFamily: 'BioRhyme-Bold',
+            },
+            appStyle: {
+                tabBarBackgroundColor: '#003a66',
+                navBarButtonColor: '#ffffff',
+                tabBarButtonColor: '#ffffff',
+                navBarTextColor: '#ffffff',
+                tabBarSelectedButtonColor: '#ff505c',
+                navigationBarColor: '#003a66',
+                navBarBackgroundColor: '#003a66',
+                statusBarColor: '#002b4c',
+                tabFontFamily: 'BioRhyme-Bold',
+            }
+        });
     }
 }
 
@@ -76,7 +110,7 @@ const styles = StyleSheet.create({
         padding: 10
     },
     input: {
-        height: 50,     
+        height: 50,
         fontSize: 18,
     },
 });
