@@ -34,6 +34,26 @@ padding: 4px;
 width: 100%;
 `;
 
+export const TitleItemList = styled.Text`
+ margin: 2px 0;
+    font-size: 17;
+    font-weight: normal;
+`;
+
+export const TitleItemDescription1 = styled.Text`
+ margin: 2px 0;
+    font-size: 15;
+    font-weight: normal;
+`;
+
+export const TitleItemDescription2 = styled.Text`
+    font-size: 14;
+    color: #8e9093;
+    margin: 0 0 2px;
+`;
+
+
+
 export const ErrorText = styled.Text`
 color: red;
         padding: 10px;
