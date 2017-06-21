@@ -1,8 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Image, Text, ScrollView, TouchableHighlight, ListView } from 'react-native';
+import { StyleSheet, ScrollView, ListView } from 'react-native';
 import RepositoriesService from '../services/RepositoriesService';
-import { TitleItemList,TitleItemDescription1, TitleItemDescription2 } from '../components/Styles';
-import moment from 'moment';
+import  ItemListAvatar from '../components/ItemListAvatar';
 
 class Repositories extends React.Component {
 
@@ -19,16 +18,7 @@ class Repositories extends React.Component {
 
     renderRow(rowData) {
         return (
-            <View style={styles.viewRow}>
-                <View style={styles.viewAvatar}>
-                    <Image source={rowData.private ? require('../assets/img/locked.png') : require('../assets/img/unlocked.png')} style={styles.avatar}></Image>
-                </View>
-                <View style={styles.viewText}>
-                    <TitleItemList>{rowData.full_name}</TitleItemList>
-                    <TitleItemDescription1>{rowData.language}</TitleItemDescription1>
-                    <TitleItemDescription2>{moment(rowData.updated_at).fromNow()}</TitleItemDescription2>
-                </View>
-            </View>
+            <ItemListAvatar rowData={rowData}></ItemListAvatar>
         );
     }
 
@@ -52,7 +42,6 @@ class Repositories extends React.Component {
                     showProgress: false
                 });
             });
-
     }
 
     render() {
@@ -67,27 +56,6 @@ class Repositories extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-
-    text: {
-        fontSize: 16,
-    },
-    viewRow: {
-        padding: 20,
-        borderColor: '#D7D7D7',
-        borderBottomWidth: 1,
-        backgroundColor: '#fff',
-        flexDirection: 'row',
-    },
-    avatar: {
-        width: 40,
-        height: 40
-    },
-    viewAvatar: {
-        flex: 1,
-    },
-    viewText: {
-        flex: 5,
     },
    
 });

@@ -42,12 +42,12 @@ export const TitleItemList = styled.Text`
 
 export const TitleItemDescription1 = styled.Text`
  margin: 2px 0;
-    font-size: 15;
+    font-size: 14;
     font-weight: normal;
 `;
 
 export const TitleItemDescription2 = styled.Text`
-    font-size: 14;
+    font-size: 13;
     color: #8e9093;
     margin: 0 0 2px;
 `;
