@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, ScrollView, ListView, TextInput, View, Text } from 'react-native';
 import RepositoriesService from '../services/RepositoriesService';
 import ItemListAvatar from '../components/ItemListAvatar';
+import { ActivityIndicator } from '../components/Styles';
+import ActivityIndicatorWorking from '../components/ActivitiIndicatorWorking';
 
 class Repositories extends React.Component {
 
@@ -33,11 +35,13 @@ class Repositories extends React.Component {
             .then(responseData => {
                 console.log('responseData', responseData);
                 this.setState({
+                    showProgress: false,
                     repositories: responseData.repositories,
                     dataSource: this.state.dataSource.cloneWithRows(responseData)
                 });
             })
             .finally(() => {
+                console.log('finally');
                 this.setState({
                     showProgress: false
                 });
@@ -45,22 +49,14 @@ class Repositories extends React.Component {
     }
 
     render() {
+        if (this.state.showProgress) {
+            return (
+                <ActivityIndicatorWorking />
+            );
+        }
         return (
             <ScrollView style={styles.container}>
-                <View style={styles.container}>
-                    <View style={styles.itemBlock}>
-                        <View style={styles.itemInner}>
-                            <View style={styles.itemWrapper}>
-                                <Text style={styles.label}>Send to</Text>
-                                <View style={styles.ionInput}>
-                                    <TextInput style={styles.input} placeholder="texto"></TextInput>
-                                </View>
-
-                            </View>
-
-                        </View>
-                    </View>
-                </View>
+                <ListView dataSource={this.state.dataSource} renderRow={this.renderRow.bind(this)}></ListView>
             </ScrollView>
         );
     }
@@ -112,13 +108,5 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%'
     },
-    input: {
-        marginTop: 8,
-        marginBottom: 8,
-        marginLeft: 0,
-        marginRight: 8,
-        padding: 0,
-        height: 19,
-    }
 });
 export default Repositories;

@@ -12,6 +12,7 @@ class RepositoriesService {
                     })
                         .then(response => response.json())
                         .then(responseData => {
+                            console.log('va a resolver');
                             resolve(responseData);
                         });
                 });
